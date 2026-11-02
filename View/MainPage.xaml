@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TdeMauiBanco.View.MainPage"
+             Title="Menu principal">
+    <ScrollView>
+        <VerticalStackLayout Padding="28"
+                             Spacing="18">
+            <Label Text="TDE - Banco de Dados Relacional"
+                   FontSize="28"
+                   FontAttributes="Bold"
+                   TextColor="#123B66" />
+            <Label Text="Aplicativo .NET MAUI com SQLite para clientes, produtos e compras."
+                   FontSize="16"
+                   TextColor="#475467" />
+
+            <Label Text="Menu principal"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   Margin="0,12,0,0" />
+            <Button Text="Clientes"
+                    Clicked="OnClientesClicked" />
+            <Button Text="Produtos"
+                    Clicked="OnProdutosClicked" />
+            <Button Text="Compras e itens"
+                    Clicked="OnComprasClicked" />
+
+            <Label Text="Regras aplicadas"
+                   FontSize="18"
+                   FontAttributes="Bold"
+                   Margin="0,16,0,0" />
+            <Label Text="• Validações são feitas antes de gravar no banco." />
+            <Label Text="• A compra exige cliente, itens e estoque disponível." />
+            <Label Text="• Valores e estoque são calculados automaticamente." />
+            <Label Text="O arquivo SQLite é criado automaticamente nos dados locais do aplicativo."
+                   FontSize="12"
+                   TextColor="#667085"
+                   Margin="0,12,0,0" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

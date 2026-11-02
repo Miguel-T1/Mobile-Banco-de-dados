@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TdeMauiBanco.View.ClientesPage"
+             Title="Clientes">
+    <ScrollView>
+        <VerticalStackLayout Padding="24"
+                             Spacing="16">
+            <Label Text="Cadastro de clientes"
+                   FontSize="26"
+                   FontAttributes="Bold"
+                   TextColor="#123B66" />
+            <Label Text="Selecione um registro abaixo para alterá-lo ou excluí-lo."
+                   TextColor="#475467" />
+
+            <Border Stroke="#D0D5DD"
+                    StrokeShape="RoundRectangle 12"
+                    Padding="16">
+                <VerticalStackLayout Spacing="10">
+                    <Label x:Name="TituloFormulario"
+                           Text="Novo cliente"
+                           FontSize="18"
+                           FontAttributes="Bold" />
+                    <Entry x:Name="NomeEntry"
+                           Placeholder="Nome completo"
+                           MaxLength="50" />
+                    <Entry x:Name="RgEntry"
+                           Placeholder="RG"
+                           Keyboard="Numeric"
+                           MaxLength="14" />
+                    <Entry x:Name="TelefoneEntry"
+                           Placeholder="Telefone"
+                           Keyboard="Telephone"
+                           MaxLength="18" />
+                    <Grid ColumnDefinitions="*,*"
+                          ColumnSpacing="10">
+                        <Button x:Name="SalvarButton"
+                                Grid.Column="0"
+                                Text="Cadastrar cliente"
+                                Clicked="OnSalvarClicked" />
+                        <Button Grid.Column="1"
+                                Text="Limpar"
+                                BackgroundColor="#667085"
+                                Clicked="OnLimparClicked" />
+                    </Grid>
+                    <Button Text="Excluir cliente selecionado"
+                            BackgroundColor="#B42318"
+                            Clicked="OnExcluirClicked" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Label Text="Clientes cadastrados"
+                   FontSize="18"
+                   FontAttributes="Bold" />
+            <CollectionView x:Name="ClientesCollection"
+                            HeightRequest="360"
+                            SelectionMode="Single"
+                            SelectionChanged="OnClienteSelectionChanged">
+                <CollectionView.EmptyView>
+                    <Label Text="Nenhum cliente cadastrado."
+                           Padding="8"
+                           TextColor="#667085" />
+                </CollectionView.EmptyView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Stroke="#D0D5DD"
+                                StrokeShape="RoundRectangle 10"
+                                Padding="12"
+                                Margin="0,4">
+                            <VerticalStackLayout Spacing="3">
+                                <Label Text="{Binding Nome}"
+                                       FontAttributes="Bold"
+                                       FontSize="17" />
+                                <Label Text="{Binding Rg, StringFormat='RG: {0}'}"
+                                       TextColor="#475467" />
+                                <Label Text="{Binding Telefone, StringFormat='Telefone: {0}'}"
+                                       TextColor="#475467" />
+                            </VerticalStackLayout>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

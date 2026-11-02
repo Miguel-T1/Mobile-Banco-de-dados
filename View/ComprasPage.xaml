@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TdeMauiBanco.View.ComprasPage"
+             Title="Compras">
+    <ScrollView>
+        <VerticalStackLayout Padding="24"
+                             Spacing="16">
+            <Label Text="Compras e itens"
+                   FontSize="26"
+                   FontAttributes="Bold"
+                   TextColor="#123B66" />
+            <Label Text="A compra e todos os itens são salvos juntos. O estoque é validado e atualizado em uma única operação."
+                   TextColor="#475467" />
+
+            <Border Stroke="#D0D5DD"
+                    StrokeShape="RoundRectangle 12"
+                    Padding="16">
+                <VerticalStackLayout Spacing="11">
+                    <Label x:Name="TituloCompra"
+                           Text="Nova compra"
+                           FontSize="18"
+                           FontAttributes="Bold" />
+                    <Picker x:Name="ClientePicker"
+                            Title="Selecione o cliente"
+                            ItemDisplayBinding="{Binding Nome}" />
+                    <DatePicker x:Name="DataCompraPicker" />
+
+                    <BoxView HeightRequest="1"
+                             Color="#D0D5DD"
+                             Margin="0,4" />
+                    <Label Text="Itens da compra"
+                           FontSize="17"
+                           FontAttributes="Bold" />
+                    <Picker x:Name="ProdutoPicker"
+                            Title="Selecione o produto"
+                            ItemDisplayBinding="{Binding Descricao}" />
+                    <Entry x:Name="QuantidadeEntry"
+                           Placeholder="Quantidade"
+                           Keyboard="Numeric" />
+                    <Grid ColumnDefinitions="*,*"
+                          ColumnSpacing="10">
+                        <Button x:Name="SalvarItemButton"
+                                Grid.Column="0"
+                                Text="Adicionar item"
+                                Clicked="OnSalvarItemClicked" />
+                        <Button Grid.Column="1"
+                                Text="Remover item"
+                                BackgroundColor="#B42318"
+                                Clicked="OnRemoverItemClicked" />
+                    </Grid>
+
+                    <CollectionView x:Name="ItensCollection"
+                                    HeightRequest="210"
+                                    SelectionMode="Single"
+                                    SelectionChanged="OnItemSelectionChanged">
+                        <CollectionView.EmptyView>
+                            <Label Text="Adicione ao menos um item."
+                                   Padding="8"
+                                   TextColor="#667085" />
+                        </CollectionView.EmptyView>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Border Stroke="#B8D4F0"
+                                        Background="#F8FBFF"
+                                        StrokeShape="RoundRectangle 10"
+                                        Padding="10"
+                                        Margin="0,3">
+                                    <Label Text="{Binding Descricao}"
+                                           LineBreakMode="WordWrap" />
+                                </Border>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+                    <Label x:Name="TotalLabel"
+                           Text="Total da compra: R$ 0,00"
+                           FontSize="19"
+                           FontAttributes="Bold"
+                           HorizontalOptions="End" />
+
+                    <Grid ColumnDefinitions="*,*"
+                          ColumnSpacing="10">
+                        <Button x:Name="SalvarCompraButton"
+                                Grid.Column="0"
+                                Text="Salvar compra"
+                                Clicked="OnSalvarCompraClicked" />
+                        <Button Grid.Column="1"
+                                Text="Nova compra"
+                                BackgroundColor="#667085"
+                                Clicked="OnNovaCompraClicked" />
+                    </Grid>
+                    <Button Text="Excluir compra selecionada"
+                            BackgroundColor="#B42318"
+                            Clicked="OnExcluirCompraClicked" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Label Text="Compras registradas"
+                   FontSize="18"
+                   FontAttributes="Bold" />
+            <CollectionView x:Name="ComprasCollection"
+                            HeightRequest="310"
+                            SelectionMode="Single"
+                            SelectionChanged="OnCompraSelectionChanged">
+                <CollectionView.EmptyView>
+                    <Label Text="Nenhuma compra registrada."
+                           Padding="8"
+                           TextColor="#667085" />
+                </CollectionView.EmptyView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Stroke="#D0D5DD"
+                                StrokeShape="RoundRectangle 10"
+                                Padding="12"
+                                Margin="0,4">
+                            <Label Text="{Binding Descricao}"
+                                   LineBreakMode="WordWrap" />
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,11 @@
+﻿bin/
+obj/
+.vs/
+*.db3
+*.sqlite
+*.sqlite3
+*.user
+*.suo
+*.exe
+*.dll
+*.pdb

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TdeMauiBanco.View.ProdutosPage"
+             Title="Produtos">
+    <ScrollView>
+        <VerticalStackLayout Padding="24"
+                             Spacing="16">
+            <Label Text="Cadastro de produtos"
+                   FontSize="26"
+                   FontAttributes="Bold"
+                   TextColor="#123B66" />
+            <Label Text="O estoque é ajustado automaticamente ao salvar ou excluir uma compra."
+                   TextColor="#475467" />
+
+            <Border Stroke="#D0D5DD"
+                    StrokeShape="RoundRectangle 12"
+                    Padding="16">
+                <VerticalStackLayout Spacing="10">
+                    <Label x:Name="TituloFormulario"
+                           Text="Novo produto"
+                           FontSize="18"
+                           FontAttributes="Bold" />
+                    <Entry x:Name="NomeEntry"
+                           Placeholder="Nome do produto"
+                           MaxLength="50" />
+                    <Entry x:Name="TipoEntry"
+                           Placeholder="Tipo / categoria"
+                           MaxLength="50" />
+                    <Grid ColumnDefinitions="*,*"
+                          ColumnSpacing="10">
+                        <Entry x:Name="PrecoEntry"
+                               Grid.Column="0"
+                               Placeholder="Preço (ex.: 12,50)" />
+                        <Entry x:Name="EstoqueEntry"
+                               Grid.Column="1"
+                               Placeholder="Estoque inicial"
+                               Keyboard="Numeric" />
+                    </Grid>
+                    <Grid ColumnDefinitions="*,*"
+                          ColumnSpacing="10">
+                        <Button x:Name="SalvarButton"
+                                Grid.Column="0"
+                                Text="Cadastrar produto"
+                                Clicked="OnSalvarClicked" />
+                        <Button Grid.Column="1"
+                                Text="Limpar"
+                                BackgroundColor="#667085"
+                                Clicked="OnLimparClicked" />
+                    </Grid>
+                    <Button Text="Excluir produto selecionado"
+                            BackgroundColor="#B42318"
+                            Clicked="OnExcluirClicked" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Label Text="Produtos cadastrados"
+                   FontSize="18"
+                   FontAttributes="Bold" />
+            <CollectionView x:Name="ProdutosCollection"
+                            HeightRequest="360"
+                            SelectionMode="Single"
+                            SelectionChanged="OnProdutoSelectionChanged">
+                <CollectionView.EmptyView>
+                    <Label Text="Nenhum produto cadastrado."
+                           Padding="8"
+                           TextColor="#667085" />
+                </CollectionView.EmptyView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Stroke="#D0D5DD"
+                                StrokeShape="RoundRectangle 10"
+                                Padding="12"
+                                Margin="0,4">
+                            <VerticalStackLayout Spacing="3">
+                                <Label Text="{Binding NomeProduto}"
+                                       FontAttributes="Bold"
+                                       FontSize="17" />
+                                <Label Text="{Binding Tipo}"
+                                       TextColor="#475467" />
+                                <Label Text="{Binding Preco, StringFormat='Preço: {0:C2}'}"
+                                       TextColor="#475467" />
+                                <Label Text="{Binding QtdEstoque, StringFormat='Estoque: {0}'}"
+                                       TextColor="#475467" />
+                            </VerticalStackLayout>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
